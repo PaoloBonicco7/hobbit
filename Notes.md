@@ -13,6 +13,7 @@
 * git merge branch_name ~ *to merge a branch into the current branch (main)*
 
 You can always UNDO a merge conflit and return to the previous state by using:
+
 * git merge --abort ~ *to abort a merge, in pratica fa tornare allo stato precedente al merge, in modo che 
   si possa effettuare alcune modifiche al codice per evitare conflitti.* 
 * git rebase --abort ~ *to abort a rebase*
