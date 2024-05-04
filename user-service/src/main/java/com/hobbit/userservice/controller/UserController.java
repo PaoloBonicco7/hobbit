@@ -8,10 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
@@ -38,7 +35,7 @@ public class UserController {
     @GetMapping(value = "/users")
     @ResponseStatus(HttpStatus.OK)
     public List<User> getUsers() {
-        final ArrayList<User> users = new ArrayList<>(userRepository.findAll());
+        final ArrayList users = new ArrayList<>((Collection) userRepository.findAll());
         return users;
     }
 }
