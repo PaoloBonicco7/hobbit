@@ -34,3 +34,6 @@ build/
 
 ### Configuration files ###
 env.properties
+
+# Macos
+.DS_Store
