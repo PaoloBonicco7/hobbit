@@ -46,3 +46,12 @@ Do not use Rebase on commits that you've already pushed/shared on a remote repos
 .jsx ~ *creo un file dentro la cartella "components"*
 rfc ~ per creare un componente react
 
+## Maven
+mvn clean package -DskipTests ~ run the test
+./mvnw -DskipTests=true clean package ~ alternativa (?)
+
+## Docker
+mvn package ~ compilazione codice sorgente
+docker build -t user-service:latest . ~ build the container
+
+
