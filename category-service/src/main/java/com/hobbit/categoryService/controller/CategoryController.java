@@ -2,6 +2,8 @@ package com.hobbit.categoryService.controller;
 
 import com.hobbit.categoryService.model.Category;
 import com.hobbit.categoryService.repository.CategoryRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,13 +15,11 @@ import java.util.UUID;
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping("api/category")
+@RequiredArgsConstructor // Lombok annotation to create a constructor with all required fields
+@Slf4j // Lombok annotation to create a logger field
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
-
-    public CategoryController(CategoryRepository categoryRepository) {
-        this.categoryRepository = categoryRepository;
-    }
 
     @PostMapping(value = "/create")
     @ResponseStatus(HttpStatus.CREATED)
@@ -27,7 +27,7 @@ public class CategoryController {
         return this.categoryRepository.save(category);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public Iterable<Category> getCategories() {
         List<Category> categories = new ArrayList<>();
         categoryRepository.findAll().forEach(categories::add);
@@ -35,14 +35,14 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Category> getCategory(@RequestParam String id) {
+    public Optional<Category> getCategory(@PathVariable String id) {
         UUID categoryId = UUID.fromString(id);
         return categoryRepository.findById(categoryId);
     }
 
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCategory(@RequestParam String id) {
+    public void deleteCategory(@PathVariable String id) {
         UUID categoryId = UUID.fromString(id);
         categoryRepository.deleteById(categoryId);
     }
